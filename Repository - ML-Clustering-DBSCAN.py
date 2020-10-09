@@ -30,7 +30,7 @@ no_clusters = len(no_clusters)-(1 if -1 in no_clusters else 0) #no of clusters m
 unique_clusters = set(labels_serie)
 df['Cluster'] = labels_serie
 ####################PLOT
-sanfran_map = folium.Map(location=[df['Lat'][0],df['Long'][0]],zoom_start=5)
+weather_stations_map = folium.Map(location=[df['Lat'][0],df['Long'][0]],zoom_start=5)
 df = df[['Lat','Long','Cluster','P']].reset_index(drop=False)
 labels_list = list(dict.fromkeys(labels_serie))
 colors = ['green','orange','pink', 'darkred', 'cadetblue','lightblue', 'blue','darkpurple',
@@ -50,5 +50,5 @@ for cluster,color in zip(labels_list, colors):
                                 color = color,
                                 fill_opacity=0.6,
                                 popup=label,
-                                radius = radius/3).add_to(sanfran_map)
-sanfran_map.save('Weather Stations.html')
+                                radius = radius/3).add_to(weather_stations_map)
+weather_stations_map.save('Weather Stations.html')
